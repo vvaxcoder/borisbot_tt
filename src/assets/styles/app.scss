@@ -1,0 +1,24 @@
+#app {
+  .create-node {
+    position: absolute;
+    top: 2%;
+    left: 2vw;
+
+    .create__btn {
+      font-weight: 500;
+
+      padding: 10px;
+
+      background-color: #3A68FD;
+      border-radius: 10px;
+      border: none;
+      color: #fff;
+      outline: none;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #18C7F5;
+      }
+    }
+  }
+}
