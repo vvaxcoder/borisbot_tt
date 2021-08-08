@@ -125,19 +125,26 @@ export default class Node extends Vue {
     }
   }
 
-  handleDragstart(e, idx, id): void {
-    e.target.classList.add("stunned");
-    setTimeout(() => e.target.classList.add("hide"), 0);
+  handleDragstart(e: DragEvent, idx, id): void {
+    const target = e.target as HTMLDivElement;
+    target.classList.add("stunned");
+
+    setTimeout(() => {
+      const target = e.target as HTMLDivElement;
+      target.classList.add("hide");
+    }, 0);
     this.dragItemId = this.nodeId;
-    const item = this.getNodes.find((el) => el.id === this.dragItemId);
+    const item: INode = this.getNodes.find((el) => el.id === this.dragItemId);
     e.dataTransfer.dropEffect = "move";
     e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("itemId", item.id);
+    e.dataTransfer.setData("itemId", '' + item.id);
   }
 
-  handleDragend(e): void {
-    e.target.classList.remove("stunned");
-    e.target.classList.remove("hide");
+  handleDragend(e: DragEvent): void {
+    const target1 = e.target as HTMLDivElement;
+    target1.classList.add("stunned");
+    const target2 = e.target as HTMLDivElement;
+    target2.classList.add("hide");
     this.dragItemId = null;
   }
 }
