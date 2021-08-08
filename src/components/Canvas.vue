@@ -7,16 +7,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Getter, namespace } from 'vuex-class';
+import { Getter, namespace } from "vuex-class";
 import INode from "../types/Node";
-const nodesModule = namespace('nodes');
+const nodesModule = namespace("nodes");
 
-@Component({
-})
+@Component({})
 export default class Canvas extends Vue {
-  @nodesModule.Getter('getNodes')
+  @nodesModule.Getter("getNodes")
   getNodes: INode[];
-  @nodesModule.Getter('getConnectedNodes')
+  @nodesModule.Getter("getConnectedNodes")
   getConnectedNodes: INode[];
 
   ctx: CanvasRenderingContext2D = null;
@@ -57,17 +56,17 @@ export default class Canvas extends Vue {
   mounted() {
     const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
     this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-    canvas.width = this.width ;
-    canvas.height = this.height ;
+    canvas.width = this.width;
+    canvas.height = this.height;
     this.vueCanvas = this.ctx;
 
     for (let n = 0; n < 3; n++) {
-      this.$parent.addNode()
+      this.$parent.addNode();
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  @import '@/assets/styles/canvas.scss';
+@import "@/assets/styles/canvas.scss";
 </style>

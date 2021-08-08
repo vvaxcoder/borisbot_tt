@@ -13,12 +13,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Getter, Mutation, namespace } from 'vuex-class';
+import { Getter, Mutation, namespace } from "vuex-class";
 import Canvas from "./components/Canvas.vue";
 import Node from "./components/Node.vue";
 
 import INode from "./types/Node";
-const nodesModule = namespace('nodes');
+const nodesModule = namespace("nodes");
 
 @Component({
   components: {
@@ -27,16 +27,16 @@ const nodesModule = namespace('nodes');
   },
 })
 export default class App extends Vue {
-  @nodesModule.Getter('getNodes')
+  @nodesModule.Getter("getNodes")
   getNodes: INode[];
-  @nodesModule.Getter('getConnectedNodes')
+  @nodesModule.Getter("getConnectedNodes")
   getConnectedNodes: INode[];
-  @nodesModule.Getter('getConnectedIds')
+  @nodesModule.Getter("getConnectedIds")
   getConnectedIds: number[];
 
-  @nodesModule.Mutation('UPDATE_NODES')
+  @nodesModule.Mutation("UPDATE_NODES")
   UPDATE_NODES: any;
-  @nodesModule.Mutation('UPDATE_CONNECTED_NODES')
+  @nodesModule.Mutation("UPDATE_CONNECTED_NODES")
   UPDATE_CONNECTED_NODES: any;
 
   height = window.innerHeight;
@@ -48,16 +48,18 @@ export default class App extends Vue {
   }
 
   addNode(): void {
-    this.UPDATE_NODES([{
-      id: this.randomId(10000),
-      x: Math.random() * (this.width - this.size),
-      y: Math.random() * (this.height - this.size),
-      connected: 0,
-    }]);
+    this.UPDATE_NODES([
+      {
+        id: this.randomId(10000),
+        x: Math.random() * (this.width - this.size),
+        y: Math.random() * (this.height - this.size),
+        connected: 0,
+      },
+    ]);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '@/assets/styles/app.scss';
+@import "@/assets/styles/app.scss";
 </style>

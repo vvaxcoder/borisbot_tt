@@ -1,4 +1,4 @@
-import { GetterTree } from 'vuex';
+import { GetterTree } from "vuex";
 import RootState from "@/types/RootState";
 import INodeState from "@/types/NodeState";
 

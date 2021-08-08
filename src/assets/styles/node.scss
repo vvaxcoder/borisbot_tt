@@ -11,3 +11,13 @@
 .node.connected {
   box-shadow: 0 5px 10px 2px #63B7F1;
 }
+
+.node.hide {
+  display: none;
+}
+
+.node.stunned {
+    border: 1px solid #2E95CA;
+    box-shadow: 0 5px 10px 2px #63B7F1;
+    transition: all 0.3s;
+}

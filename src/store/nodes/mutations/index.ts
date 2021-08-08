@@ -9,20 +9,21 @@ const mutations: MutationTree<INodeState> = {
     nodes = [...state.nodes, ...payload];
     state.nodes = nodes;
   },
+  REMOVE_NODE_BY_IDX(state: INodeState, payload: number) {
+    const { nodes } = state;
+    nodes.splice(payload, 1);
+    state.nodes = nodes;
+  },
   SET_NODE_CONNECTED(state: INodeState, payload: number) {
     const { nodes } = state;
     nodes[payload].connected = nodes[payload].id;
     state.nodes = nodes;
   },
-  UPDATE_CONNECTED_NODES(state: INodeState, payload: INode) {
-    const { connectedNodes } = state;
-    connectedNodes.push(payload);
-    state.connectedNodes = connectedNodes;
+  UPDATE_CONNECTED_NODES(state: INodeState, payload: INode[]) {
+    state.connectedNodes = payload;
   },
   UPDATE_CONNECTED_IDS(state: INodeState, payload: number[]) {
-    let { connectedIds } = state;
-    connectedIds = [...state.connectedIds, ...payload];
-    state.connectedIds = connectedIds;
+    state.connectedIds = payload;
   },
 };
 
