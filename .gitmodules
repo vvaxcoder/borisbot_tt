@@ -1,0 +1,3 @@
+[submodule "dist"]
+	path = dist
+	url = /opt/Folder_Ubuntu/borisbot_tt/dist

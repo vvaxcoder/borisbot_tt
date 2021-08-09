@@ -18,8 +18,8 @@ export default class Canvas extends Vue {
   @nodesModule.Getter("getConnectedNodes")
   getConnectedNodes!: INode[];
 
-  ctx: CanvasRenderingContext2D = new CanvasRenderingContext2D();
-  vueCanvas: CanvasRenderingContext2D = new CanvasRenderingContext2D();
+  ctx!: CanvasRenderingContext2D;
+  vueCanvas!: CanvasRenderingContext2D;
 
   @Prop() private width!: number;
   @Prop() private height!: number;
@@ -62,7 +62,8 @@ export default class Canvas extends Vue {
     this.vueCanvas = this.ctx;
 
     for (let n = 0; n < 3; n++) {
-      this.$parent.addNode();
+      const canvasNode: any = this.$parent;
+      canvasNode.addNode();
     }
   }
 }

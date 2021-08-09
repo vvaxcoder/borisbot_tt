@@ -105,7 +105,7 @@ export default class Node extends Vue {
   }
 
   deleteElem(): void {
-    let canvas = null;
+    let canvas: any = null;
     this.$parent.$children.forEach((ref) => {
       if (Object.entries(ref.$el)[0][1] === "canvas-wrapper") {
         canvas = ref;
