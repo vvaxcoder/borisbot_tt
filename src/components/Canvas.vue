@@ -18,17 +18,18 @@ export default class Canvas extends Vue {
   @nodesModule.Getter("getConnectedNodes")
   getConnectedNodes!: INode[];
 
-  ctx: CanvasRenderingContext2D = null;
-  vueCanvas: CanvasRenderingContext2D = null;
+  ctx: CanvasRenderingContext2D = new CanvasRenderingContext2D();
+  vueCanvas: CanvasRenderingContext2D = new CanvasRenderingContext2D();
 
   @Prop() private width!: number;
   @Prop() private height!: number;
   @Prop() private size!: number;
 
   onDrop(e: DragEvent): void {
-    const itemId: number = e.dataTransfer.getData("itemId") as number;
-    const item: INode = this.getNodes.find((el) => el.id === itemId);
-    const idx = this.getNodes.indexOf(item);
+    const dataTransfer = e.dataTransfer as DataTransfer;
+    const itemId = dataTransfer.getData("itemId");
+    const item: INode = this.getNodes.find((el) => el.id === +itemId) as INode;
+    const idx: number = this.getNodes.indexOf(item);
     this.getNodes[idx].x = e.clientX;
     this.getNodes[idx].y = e.clientY;
     this.updateConnect(this.getConnectedNodes);
