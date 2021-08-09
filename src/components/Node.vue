@@ -19,26 +19,26 @@ export default class Node extends Vue {
   @Prop() private height!: number;
 
   @nodesModule.Getter("getNodes")
-  getNodes: INode[];
+  getNodes!: INode[];
   @nodesModule.Getter("getConnectedNodes")
-  getConnectedNodes: INode[];
+  getConnectedNodes!: INode[];
   @nodesModule.Getter("getConnectedIds")
-  getConnectedIds: number[];
+  getConnectedIds!: number[];
 
   @nodesModule.Mutation("SET_NODE_CONNECTED")
-  SET_NODE_CONNECTED: any;
+  SET_NODE_CONNECTED!: any;
   @nodesModule.Mutation("UPDATE_CONNECTED_NODES")
-  UPDATE_CONNECTED_NODES: any;
+  UPDATE_CONNECTED_NODES!: any;
   @nodesModule.Mutation("UPDATE_CONNECTED_IDS")
-  UPDATE_CONNECTED_IDS: any;
+  UPDATE_CONNECTED_IDS!: any;
   @nodesModule.Mutation("REMOVE_NODE_BY_IDX")
-  REMOVE_NODE_BY_IDX: any;
+  REMOVE_NODE_BY_IDX!: any;
 
   isNodeClicked = false;
-  dragItemId = null;
+  dragItemId = 0;
 
   doNodeConnect(): void {
-    let canvas = null;
+    let canvas: any = null;
     this.$parent.$children.forEach((ref) => {
       if (Object.entries(ref.$el)[0][1] === "canvas-wrapper") {
         canvas = ref;
@@ -77,7 +77,6 @@ export default class Node extends Vue {
       let connectedArr = this.getConnectedNodes.slice();
       connectedArr.push(this.getNodes[this.index]);
       this.UPDATE_CONNECTED_NODES(connectedArr);
-      connectedArr = null;
     }
 
     const connectElemLength = this.getConnectedIds.length;
@@ -114,8 +113,6 @@ export default class Node extends Vue {
       }
     });
 
-    // this.connectId = this.getConnectedIds.filter((el) => el !== this.nodeId);
-
     const connectedNodes = this.getConnectedNodes.filter((el) => el.id !== this.nodeId);
     this.UPDATE_CONNECTED_NODES(connectedNodes);
     this.REMOVE_NODE_BY_IDX(this.index);
@@ -125,7 +122,7 @@ export default class Node extends Vue {
     }
   }
 
-  handleDragstart(e: DragEvent, idx, id): void {
+  handleDragstart(e: DragEvent): void {
     const target = e.target as HTMLDivElement;
     target.classList.add("stunned");
 
@@ -134,10 +131,14 @@ export default class Node extends Vue {
       target.classList.add("hide");
     }, 0);
     this.dragItemId = this.nodeId;
-    const item: INode = this.getNodes.find((el) => el.id === this.dragItemId);
-    e.dataTransfer.dropEffect = "move";
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("itemId", '' + item.id);
+    const item: INode | undefined = this.getNodes.find((el) => el.id === this.dragItemId) as INode;
+
+    if (e != null) {
+      const dataTransfer = e.dataTransfer as DataTransfer;
+      dataTransfer.dropEffect = "move";
+      dataTransfer.effectAllowed = "move";
+      dataTransfer.setData("itemId", '' + item.id);
+    }
   }
 
   handleDragend(e: DragEvent): void {
@@ -145,7 +146,7 @@ export default class Node extends Vue {
     target1.classList.add("stunned");
     const target2 = e.target as HTMLDivElement;
     target2.classList.add("hide");
-    this.dragItemId = null;
+    this.dragItemId = 0;
   }
 }
 </script>

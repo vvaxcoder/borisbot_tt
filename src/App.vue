@@ -28,22 +28,22 @@ const nodesModule = namespace("nodes");
 })
 export default class App extends Vue {
   @nodesModule.Getter("getNodes")
-  getNodes: INode[];
+  getNodes!: INode[];
   @nodesModule.Getter("getConnectedNodes")
-  getConnectedNodes: INode[];
+  getConnectedNodes!: INode[];
   @nodesModule.Getter("getConnectedIds")
-  getConnectedIds: number[];
+  getConnectedIds!: number[];
 
   @nodesModule.Mutation("UPDATE_NODES")
-  UPDATE_NODES: any;
+  UPDATE_NODES!: any;
   @nodesModule.Mutation("UPDATE_CONNECTED_NODES")
-  UPDATE_CONNECTED_NODES: any;
+  UPDATE_CONNECTED_NODES!: any;
 
   height = window.innerHeight;
   width = window.innerWidth;
   size = 50;
 
-  randomId(num) {
+  randomId(num: number): string {
     return Math.round(Math.random() * num).toString();
   }
 

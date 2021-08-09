@@ -14,9 +14,9 @@ const nodesModule = namespace("nodes");
 @Component({})
 export default class Canvas extends Vue {
   @nodesModule.Getter("getNodes")
-  getNodes: INode[];
+  getNodes!: INode[];
   @nodesModule.Getter("getConnectedNodes")
-  getConnectedNodes: INode[];
+  getConnectedNodes!: INode[];
 
   ctx: CanvasRenderingContext2D = null;
   vueCanvas: CanvasRenderingContext2D = null;
