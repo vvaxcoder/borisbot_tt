@@ -26,13 +26,13 @@ export default class Node extends Vue {
   getConnectedIds!: number[];
 
   @nodesModule.Mutation("SET_NODE_CONNECTED")
-  SET_NODE_CONNECTED!: number;
+  SET_NODE_CONNECTED!: any;
   @nodesModule.Mutation("UPDATE_CONNECTED_NODES")
-  UPDATE_CONNECTED_NODES!: INode[];
+  UPDATE_CONNECTED_NODES!: any;
   @nodesModule.Mutation("UPDATE_CONNECTED_IDS")
-  UPDATE_CONNECTED_IDS!: number[];
+  UPDATE_CONNECTED_IDS!: any;
   @nodesModule.Mutation("REMOVE_NODE_BY_IDX")
-  REMOVE_NODE_BY_IDX!: number;
+  REMOVE_NODE_BY_IDX!: any;
 
   isNodeClicked = false;
   dragItemId = 0;
