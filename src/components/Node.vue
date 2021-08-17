@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Getter, namespace } from "vuex-class";
+import { Getter, Mutation, namespace } from "vuex-class";
 import INode from "../types/Node";
 const nodesModule = namespace("nodes");
 
@@ -26,13 +26,13 @@ export default class Node extends Vue {
   getConnectedIds!: number[];
 
   @nodesModule.Mutation("SET_NODE_CONNECTED")
-  SET_NODE_CONNECTED!: any;
+  SET_NODE_CONNECTED!: number;
   @nodesModule.Mutation("UPDATE_CONNECTED_NODES")
-  UPDATE_CONNECTED_NODES!: any;
+  UPDATE_CONNECTED_NODES!: INode[];
   @nodesModule.Mutation("UPDATE_CONNECTED_IDS")
-  UPDATE_CONNECTED_IDS!: any;
+  UPDATE_CONNECTED_IDS!: number[];
   @nodesModule.Mutation("REMOVE_NODE_BY_IDX")
-  REMOVE_NODE_BY_IDX!: any;
+  REMOVE_NODE_BY_IDX!: number;
 
   isNodeClicked = false;
   dragItemId = 0;

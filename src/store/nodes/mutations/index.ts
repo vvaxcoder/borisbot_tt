@@ -16,7 +16,7 @@ const mutations: MutationTree<INodeState> = {
   },
   SET_NODE_CONNECTED(state: INodeState, payload: number) {
     const { nodes } = state;
-    nodes[payload].connected = nodes[payload].id;
+    nodes[payload].connected = Number(nodes[payload].id);
     state.nodes = nodes;
   },
   UPDATE_CONNECTED_NODES(state: INodeState, payload: INode[]) {
