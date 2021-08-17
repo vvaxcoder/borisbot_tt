@@ -1,5 +1,5 @@
 export default interface INode {
-  id: number;
+  id: string;
   x: number;
   y: number;
   connected: number;

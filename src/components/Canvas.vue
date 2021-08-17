@@ -28,7 +28,7 @@ export default class Canvas extends Vue {
   onDrop(e: DragEvent): void {
     const dataTransfer = e.dataTransfer as DataTransfer;
     const itemId = dataTransfer.getData("itemId");
-    const item: INode = this.getNodes.find((el) => el.id === +itemId) as INode;
+    const item: INode = this.getNodes.find((el) => el.id === itemId) as INode;
     const idx: number = this.getNodes.indexOf(item);
     this.getNodes[idx].x = e.clientX;
     this.getNodes[idx].y = e.clientY;
