@@ -10,6 +10,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Getter, Mutation, namespace } from "vuex-class";
 import INode from "../types/Node";
 const nodesModule = namespace("nodes");
+import Nodes from '../store/models/Nodes.ts';
 
 @Component({})
 export default class Node extends Vue {
@@ -36,6 +37,10 @@ export default class Node extends Vue {
 
   isNodeClicked = false;
   dragItemId = 0;
+
+  get getNodes() {
+    return Nodes.all();
+  }
 
   doNodeConnect(): void {
     let canvas: any = null;
